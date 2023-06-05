@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -15,7 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::orderByDesc('id')->paginate(8);
+
+        return view('admin.dashboard', compact('projects'));
     }
 
     /**
@@ -25,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -36,7 +39,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        // generate the title slug
+        $slug = Project::generateSlug($val_data['title']);
+        //dd($slug);
+        $val_data['slug'] = $slug;
+        //dd($val_data);
+
+        // Create the new Post
+        Project::create($val_data);
+        // redirect back
+        return to_route('admin.dashboard')->with('message', 'project Created Successfully');
     }
 
     /**
