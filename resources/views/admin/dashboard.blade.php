@@ -1,61 +1,26 @@
-@extends('layouts.admin')
+@extends('layouts.app')
+
 @section('content')
-<h1>Show posts table</h1>
- <a class="btn btn-dark" href="{{route('admin.projects.create')}}" role="button">Create Post</a> 
+<div class="container">
+    <h2 class="fs-4 text-secondary my-4">
+        {{ __('Dashboard') }}
+    </h2>
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">{{ __('User Dashboard') }}</div>
 
-@include('partials.session_message')
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
 
-<div class="table-responsive">
-    <table class="table table-striped
-    table-hover
-    table-borderless
-    table-primary
-    align-middle">
-        <thead class="table-light">
-
-            <tr>
-                <th>ID</th>
-                <th>Cover</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Actions</th>
-
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-
-
-        @forelse ($projects as $project)
-            <tr class="table-primary">
-                <td scope="row">{{$project->id}}</td>
-                <td><img height="100" src="{{$project->cover_image}}" alt="{{$project->title}}"></td>
-                <td>{{$project->title}}</td>
-                <td>{{$project->slug}}</td>
-                <td>
-
-                    VIEW/EDIT/DELETE
-
-                </td>
-
-            </tr>
-            @empty
-            <tr class="table-primary">
-                <td scope="row">No posts yet.</td>
-
-            </tr>
-            @endforelse
-        </tbody>
-        <tfoot>
-
-        </tfoot>
-    </table>
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-
-
-
-
-
 @endsection

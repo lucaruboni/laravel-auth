@@ -41,7 +41,7 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{Route::currentRouteName() == 'admin.project.index' ? 'bg-dark' : ''}}" aria-current="page" href="{{route('admin.projects.index')}}">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.project.index' ? 'bg-dark' : ''}}" aria-current="page" href="{{route('admin.dashboard')}}">
                                     <i class="fa-solid fa-gauge"></i>
                                     {{__('Dashboard')}}
                                 </a>
