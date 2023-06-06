@@ -49,7 +49,7 @@ class ProjectController extends Controller
         // Create the new Post
         Project::create($val_data);
         // redirect back
-        return to_route('admin.dashboard')->with('message', 'project Created Successfully');
+        return to_route('admin.projects.index')->with('message', 'project Created Successfully');
     }
 
     /**
