@@ -18,6 +18,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <h1>Go to <a href="{{route('admin.projects.index')}}">Your Projects</a>!</h1>
                 </div>
             </div>
         </div>
